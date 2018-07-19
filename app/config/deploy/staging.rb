@@ -3,10 +3,14 @@
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
 
- server "ubuntu@34.255.1.181s", user: "ssh -i ~/.ssh/DevOpsStudents.pem", roles: %w{app db web}, my_property: :my_value
+# server "example.com", user: "deploy", roles: %w{app db web}, my_property: :my_value
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
+server "52.50.22.47", :user => "ubuntu", :roles => %{web app}
+set :branch, "develop"
+set :default_env, {
 
+}
 
 
 # role-based syntax

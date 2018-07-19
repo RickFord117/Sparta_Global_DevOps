@@ -1,8 +1,21 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.11.0"
+lock "~> 3.10.1"
 
-set :application, "my_app_name"
-set :repo_url, "git@example.com:me/my_repo.git"
+set :application, "sample-app"
+set :repo_url, "git@github.com:spartaglobal/SpartaInventory.git"
+set :ssh_options, { :forward_agent => true }
+set :deploy_to, "/home/ubuntu/app"
+
+namespace :deploy do
+
+  desc 'Restart application'
+  task :restart do
+    invoke 'pm2:restart'
+  end
+
+  after :publishing, :restart   
+end
+
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -21,7 +34,7 @@ set :repo_url, "git@example.com:me/my_repo.git"
 # set :pty, true
 
 # Default value for :linked_files is []
-# append :linked_files, "config/database.yml"
+# append :linked_files, "config/database.yml", "config/secrets.yml"
 
 # Default value for linked_dirs is []
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
