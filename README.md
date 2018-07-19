@@ -1,3 +1,3 @@
 # Sparta_Global_DevOps
 
-SSH play-around
+Automated Jenkins with push to origin
